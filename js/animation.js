@@ -9,12 +9,10 @@ function initRotatingText() {
 
   const textItems = rotatingElement.querySelectorAll(".text-item");
   let currentIndex = 0;
-  console.log(textItems);
 
   // Function to show next text
   function showNextText() {
     // Hide current text
-    console.log(currentIndex);
     textItems[currentIndex].classList.remove("active");
 
     // Move to next text
