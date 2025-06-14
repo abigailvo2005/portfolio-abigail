@@ -27,7 +27,7 @@
 /* Fonts Start */
 /* ------------------------------------------------*/
 /* Syne font */
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Braah+One&family=Fredoka:wght@300..700&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Braah+One&family=Fredoka:wght@300..700&family=Lalezar&family=Pacifico&display=swap");
 /* ------------------------------------------------*/
 /* Fonts End */
 /* ------------------------------------------------*/
@@ -36,8 +36,8 @@
 /* ------------------------------------------------*/
 :root {
   --_size: 1.6rem;
-  --_font-default: "Syne", sans-serif;
-  --_font-accent: "Syne", sans-serif;
+  --_font-default: "Braah One", sans-serif;
+  --_font-accent: "Braah One", sans-serif;
   --_radius-s: 1.5rem;
   --_radius-m: 2.2rem;
   --_radius-l: 3rem;
