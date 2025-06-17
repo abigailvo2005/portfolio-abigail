@@ -4511,7 +4511,7 @@ form textarea:required:valid {
   margin-bottom: 15px;
 }
 
-.project-tag-video {
+.project-tag-video {  
   background: rgba(255, 107, 157, 0.15);
   color: var(--accent);
   padding: 6px 15px;
@@ -4519,6 +4519,13 @@ form textarea:required:valid {
   font-size: 0.85em;
   border: 1px solid rgba(255, 107, 157, 0.3);
   margin-right: 1%;
+}
+
+@media (max-width: 800px) {
+  .project-tag-video {
+    font-size: 0.7em;
+    padding: 4px 12px;
+  }
 }
 
 .project-description-video {
