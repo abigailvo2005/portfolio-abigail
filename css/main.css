@@ -377,8 +377,9 @@ a {
 
 img {
   display: block;
-  width: 100%;
+  width: 25vh;
   height: auto;
+  margin: auto;
 }
 
 .overflow-hidden {
@@ -3121,7 +3122,7 @@ form textarea:required:valid {
 }
 @media only screen and (min-width: 1400px) {
   .avatar__container {
-    padding: 5rem;
+    /* padding: 5rem; */
   }
 }
 
