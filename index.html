@@ -448,126 +448,205 @@
           <!-- Content Block - Enhanced Projects Gallery Start -->
           <div class="content__block grid-block">
             <div class="container-fluid px-0 inner__gallery">
-              <div class="row gx-0 my-gallery">
+              <div class="row gx-4 gy-4 my-gallery">
                 <!-- Project 1: Moodify -->
-                <figure
-                  class="col-12 col-md-6 gallery__item grid-item animate-card-2"
-                >
+                <div class="col-12 col-md-6 col-lg-4">
                   <div
-                    class="enhanced-project-item"
+                    class="modern-project-card animate-card-2"
                     data-project-title="Moodify"
                     data-project-description="A mobile app designed to help users track and reflect on their emotional wellbeing. Built using React Native for the frontend and Firebase and Supabase for authentication and cloud services, Moodify allows daily and weekly mood entries. Users can write private or public mood notes, visualise emotional trends through intuitive statistics, and connect with trusted friends via referral code to offer mutual support."
                     data-project-tags='["React Native", "Mobile App", "Firebase", "Supabase", "TypeScript"]'
                     data-project-contributions='["Designed complete user flow and wireframes using Figma", "Implemented React Native frontend with TypeScript for type safety", "Integrated Firebase authentication and real-time database", "Built mood visualization charts using react-native-chart-kit", "Developed friend referral system with unique codes", "Created responsive UI components with custom animations", "Implemented offline-first architecture for better UX"]'
                     data-project-links='[
-                  {"text": "GitHub", "url": "https://github.com/abigailvo2005/moodify-fe", "type": "github", "icon": "ph-github-logo"},
-                  {"text": "Drive", "url": "https://drive.google.com/drive/folders/1NxFJ7FLLYo6KEMmYH0aZQrz8ZoUTaKBj", "type": "drive", "icon": "ph-google-drive-logo"}
-               ]'
+            {"text": "GitHub", "url": "https://github.com/abigailvo2005/moodify-fe", "type": "github", "icon": "ph-github-logo"},
+            {"text": "Drive", "url": "https://drive.google.com/drive/folders/1NxFJ7FLLYo6KEMmYH0aZQrz8ZoUTaKBj", "type": "drive", "icon": "ph-google-drive-logo"}
+         ]'
                     data-project-video="https://www.youtube.com/embed/43r6lXilbcQ?si=ScIw6TUJdLwQzwGc"
                     data-project-gallery='[
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/login-screen.png", "caption": "Login & Authentication Flow"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/mood-tracker.png", "caption": "Daily Mood Tracking Interface"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/statistics.png", "caption": "Mood Analytics Dashboard"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/social-features.png", "caption": "Friend Support System"}
-               ]'
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/login-screen.png", "caption": "Login & Authentication Flow"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/mood-tracker.png", "caption": "Daily Mood Tracking Interface"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/statistics.png", "caption": "Mood Analytics Dashboard"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/social-features.png", "caption": "Friend Support System"}
+         ]'
                   >
-                    <a class="gallery__link">
-                      <img
-                        src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/moodify-thumbnail.PNG"
-                        class="gallery__image"
-                        alt="Moodify - Track Your Mood"
-                      />
-                    </a>
-                    <figcaption class="gallery__descr">
-                      <h5>Moodify</h5>
-                      <div class="card__tags d-flex flex-wrap">
-                        <span class="rounded-tag opposite">React Native</span>
-                        <span class="rounded-tag opposite"
-                          >Mobile Application</span
-                        >
+                    <div class="project-card-header">
+                      <div class="project-image-wrapper">
+                        <img
+                          src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/Moodify_PJ01/moodify-thumbnail.PNG"
+                          alt="Moodify - Track Your Mood"
+                          class="project-thumbnail"
+                        />
+                        <div class="project-overlay">
+                          <div class="project-type-badge">Mobile App</div>
+                          <div class="project-hover-content">
+                            <i class="ph-bold ph-play-circle"></i>
+                            <span>View Project</span>
+                          </div>
+                        </div>
                       </div>
-                    </figcaption>
+                    </div>
+
+                    <div class="project-card-body">
+                      <div class="project-meta">
+                        <h3 class="project-title">Moodify</h3>
+                        <p class="project-summary">
+                          Mental health tracking app with mood analytics and
+                          friend support system
+                        </p>
+                      </div>
+
+                      <div class="project-tech-stack">
+                        <span class="tech-tag primary">React Native</span>
+                        <span class="tech-tag secondary">Firebase</span>
+                        <span class="tech-tag accent">TypeScript</span>
+                      </div>
+
+                      <div class="project-stats">
+                        <div class="stat-item">
+                          <i class="ph-bold ph-users"></i>
+                          <span>Social Features</span>
+                        </div>
+                        <div class="stat-item">
+                         <i class="fa-solid fa-thumbtack"></i>
+                          <span>Mental Journey</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </figure>
+                </div>
 
                 <!-- Project 2: EmpowerU -->
-                <figure
-                  class="col-12 col-md-6 gallery__item grid-item animate-card-2"
-                >
+                <div class="col-12 col-md-6 col-lg-4">
                   <div
-                    class="enhanced-project-item"
+                    class="modern-project-card animate-card-2"
                     data-project-title="EmpowerU"
                     data-project-description="A direct mentoring platform designed to help young learners personalise their learning paths, gain practical skills, and receive career guidance from experienced mentors. It connects students and early professionals with mentors across diverse fields such as business, design, and technology through flexible, real-time sessions. EmpowerU aims to ensure that no young person has to walk their growth journey alone."
-                    data-project-tags='["ReactJS", "Web Application", "Mentoring Platform", "Socket.io"]'
+                    data-project-tags='["ReactJS", "Web Application", "Mentoring Platform", "SpringBoot"]'
                     data-project-contributions='["Led UI/UX design process from concept to implementation", "Developed responsive React components with modern hooks", "Built mentor-student matching algorithm based on skills and interests", "Implemented real-time chat system using Socket.io", "Created booking and scheduling system with calendar integration", "Designed and implemented user dashboard with analytics", "Built mentor rating and review system"]'
                     data-project-links='[
-                  {"text": "GitHub", "url": "https://github.com/abigailvo2005/mentor_fe", "type": "github", "icon": "ph-github-logo"},
-                  {"text": "Figma", "url": "https://www.figma.com/design/GcRyDQDUen40it9GtFeo2f/EmpowerU---MVP-Figma---EXE101?node-id=339-763&t=DDC8SksHAhCoxzbs-0", "type": "figma", "icon": "ph-figma-logo"},
-                  {"text": "Drive", "url": "https://drive.google.com/file/d/1tR6PDIq--kB899yc42cC3Wia3NQpERqG/view?usp=sharing", "type": "drive", "icon": "ph-google-drive-logo"}
-               ]'
+            {"text": "GitHub", "url": "https://github.com/abigailvo2005/mentor_fe", "type": "github", "icon": "ph-github-logo"},
+            {"text": "Figma", "url": "https://www.figma.com/design/GcRyDQDUen40it9GtFeo2f/EmpowerU---MVP-Figma---EXE101?node-id=339-763&t=DDC8SksHAhCoxzbs-0", "type": "figma", "icon": "ph-figma-logo"},
+            {"text": "Drive", "url": "https://drive.google.com/file/d/1tR6PDIq--kB899yc42cC3Wia3NQpERqG/view?usp=sharing", "type": "drive", "icon": "ph-google-drive-logo"}
+         ]'
                     data-project-video="https://www.youtube.com/embed/wagn8Wrmzuc?si=dlpz7Hz4I5PVTUng"
                     data-project-gallery='[
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/landing-page.png", "caption": "Modern Landing Page Design"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/mentor-profiles.png", "caption": "Mentor Directory & Profiles"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/booking-system.png", "caption": "Session Booking Interface"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/dashboard.png", "caption": "User Dashboard & Analytics"}
-               ]'
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/landing-page.png", "caption": "Modern Landing Page Design"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/mentor-profiles.png", "caption": "Mentor Directory & Profiles"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/booking-system.png", "caption": "Session Booking Interface"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/dashboard.png", "caption": "User Dashboard & Analytics"}
+         ]'
                   >
-                    <a class="gallery__link">
-                      <img
-                        src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/empoweru.png"
-                        class="gallery__image"
-                        alt="EmpowerU - Mentoring Platform"
-                      />
-                    </a>
-                    <figcaption class="gallery__descr opposite">
-                      <h5 class="opposite">EmpowerU</h5>
-                      <div class="card__tags d-flex flex-wrap">
-                        <span class="rounded-tag">ReactJS</span>
-                        <span class="rounded-tag">Web Application</span>
+                    <div class="project-card-header">
+                      <div class="project-image-wrapper">
+                        <img
+                          src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/EmpowerU_PJ02/empoweru.png"
+                          alt="EmpowerU - Mentoring Platform"
+                          class="project-thumbnail"
+                        />
+                        <div class="project-overlay">
+                          <div class="project-type-badge">Web Platform</div>
+                          <div class="project-hover-content">
+                            <i class="ph-bold ph-play-circle"></i>
+                            <span>View Project</span>
+                          </div>
+                        </div>
                       </div>
-                    </figcaption>
+                    </div>
+
+                    <div class="project-card-body">
+                      <div class="project-meta">
+                        <h3 class="project-title">EmpowerU</h3>
+                        <p class="project-summary">
+                          Direct mentoring platform connecting learners with
+                          experienced mentors
+                        </p>
+                      </div>
+
+                      <div class="project-tech-stack">
+                        <span class="tech-tag primary">ReactJS</span>
+                        <span class="tech-tag secondary">SpringBoot</span>
+                        <span class="tech-tag accent">Real-time</span>
+                      </div>
+
+                      <div class="project-stats">
+                        <div class="stat-item">
+                          <i class="ph-bold ph-chats"></i>
+                          <span>Live Chat</span>
+                        </div>
+                        <div class="stat-item">
+                          <i class="ph-bold ph-calendar"></i>
+                          <span>Booking System</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </figure>
+                </div>
 
                 <!-- Project 3: FiMan -->
-                <figure
-                  class="col-12 col-md-6 gallery__item grid-item animate-card-2"
-                >
+                <div class="col-12 col-md-6 col-lg-4">
                   <div
-                    class="enhanced-project-item"
+                    class="modern-project-card animate-card-2"
                     data-project-title="FiMan"
                     data-project-description="Your personal finance management app - designed to help users gain control of their spending, savings, and emotional well-being around money. Built with React Native and backed by Node.js and Firebase, FiMan allows users to track daily expenses, categorize transactions, and view insightful financial reports."
                     data-project-tags='["Finance Tracking", "Personal Management", "React Native", "Node.js"]'
                     data-project-contributions='["Architected complete financial data model and database schema", "Built expense tracking with smart category management", "Implemented budget planning and alert system", "Created financial analytics and reporting features using Chart.js", "Developed secure transaction logging with encryption", "Integrated bank account linking (demo mode)", "Built receipt scanning feature using OCR"]'
                     data-project-links='[
-                  {"text": "GitHub", "url": "https://github.com/abigailvo2005/fiman-wallet", "type": "github", "icon": "ph-github-logo"},
-                  {"text": "Demo", "url": "#", "type": "demo", "icon": "ph-play"}
-               ]'
+            {"text": "GitHub", "url": "https://github.com/abigailvo2005/fiman-wallet", "type": "github", "icon": "ph-github-logo"},
+            {"text": "Demo", "url": "#", "type": "demo", "icon": "ph-play"}
+         ]'
                     data-project-video="https://www.youtube.com/embed/dQw4w9WgXcQ"
                     data-project-gallery='[
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/expense-tracker.png", "caption": "Expense Tracking Interface"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/budget-planning.png", "caption": "Budget Management Dashboard"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/analytics.png", "caption": "Financial Analytics & Reports"},
-                  {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/categories.png", "caption": "Smart Category Management"}
-               ]'
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/expense-tracker.png", "caption": "Expense Tracking Interface"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/budget-planning.png", "caption": "Budget Management Dashboard"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/analytics.png", "caption": "Financial Analytics & Reports"},
+            {"url": "https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/categories.png", "caption": "Smart Category Management"}
+         ]'
                   >
-                    <a class="gallery__link">
-                      <img
-                        src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/fiman-img.png"
-                        class="gallery__image"
-                        alt="FiMan - Finance Management"
-                      />
-                    </a>
-                    <figcaption class="gallery__descr opposite">
-                      <h5 class="opposite">FiMan</h5>
-                      <div class="card__tags d-flex flex-wrap">
-                        <span class="rounded-tag">Finance Tracking</span>
-                        <span class="rounded-tag">Personal Management</span>
+                    <div class="project-card-header">
+                      <div class="project-image-wrapper">
+                        <img
+                          src="https://kmkbevsvcbsgmjpkcaye.supabase.co/storage/v1/object/public/portfolio-img/FiMan_PJ03/fiman-img.png"
+                          alt="FiMan - Finance Management"
+                          class="project-thumbnail"
+                        />
+                        <div class="project-overlay">
+                          <div class="project-type-badge">Finance App</div>
+                          <div class="project-hover-content">
+                            <i class="ph-bold ph-play-circle"></i>
+                            <span>View Project</span>
+                          </div>
+                        </div>
                       </div>
-                    </figcaption>
+                    </div>
+
+                    <div class="project-card-body">
+                      <div class="project-meta">
+                        <h3 class="project-title">FiMan</h3>
+                        <p class="project-summary">
+                          Personal finance management with smart budgeting and
+                          expense tracking
+                        </p>
+                      </div>
+
+                      <div class="project-tech-stack">
+                        <span class="tech-tag primary">React Native</span>
+                        <span class="tech-tag secondary">Node.js</span>
+                        <!-- <span class="tech-tag accent">Chart.js</span> -->
+                      </div>
+
+                      <div class="project-stats">
+                        <div class="stat-item">
+                          <i class="ph-bold ph-chart-pie"></i>
+                          <span>Personal Finance</span>
+                        </div>
+                        <div class="stat-item">
+                          <i class="ph-bold ph-receipt"></i>
+                          <span>Transaction Tracking</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </figure>
+                </div>
               </div>
             </div>
           </div>
