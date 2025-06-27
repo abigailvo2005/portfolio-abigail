@@ -1,3 +1,259 @@
+// // FOR TEXT SWITCHING ANIMATION
+// function initRotatingText() {
+//   const rotatingElement = document.getElementById("rotatingText");
+
+//   if (!rotatingElement) {
+//     console.log("Rotating text element not found");
+//     return;
+//   }
+
+//   const textItems = rotatingElement.querySelectorAll(".text-item");
+//   let currentIndex = 0;
+
+//   // Function to show next text
+//   function showNextText() {
+//     // Hide current text
+//     textItems[currentIndex].classList.remove("active");
+
+//     // Move to next text
+//     currentIndex = (currentIndex + 1) % textItems.length;
+
+//     // Show next text
+//     textItems[currentIndex].classList.add("active");
+//   }
+
+//   // Start the rotation every 5 seconds
+//   setInterval(showNextText, 5000);
+
+//   console.log("Rotating text initialized with", textItems.length, "items");
+// }
+
+// // Initialize when page loads
+// document.addEventListener("DOMContentLoaded", initRotatingText);
+
+// // Backup: Initialize if DOM already loaded
+// if (document.readyState !== "loading") {
+//   initRotatingText();
+// }
+
+// // FOR VIDEO MODAL
+// class PortfolioVideoModal {
+//   constructor() {
+//     this.modal = document.getElementById("projectModal");
+//     this.videoWrapper = document.getElementById("videoWrapper");
+//     this.projectVideo = document.getElementById("projectVideo");
+//     this.currentProjectSpan = document.getElementById("currentProject");
+//     this.videoInfoPanel = document.getElementById("videoInfoPanel");
+
+//     this.currentProject = null;
+//     this.isFullscreen = false;
+
+//     this.init();
+//   }
+
+//   init() {
+//     // Add click listeners to gallery items
+//     document.querySelectorAll(".gallery__item").forEach((item) => {
+//       item.addEventListener("click", (e) => {
+//         if (e.target.tagName === "A") {
+//           e.preventDefault();
+//         }
+//         this.openModal(item);
+//       });
+//     });
+
+//     // Modal events
+//     this.modal.addEventListener("show.bs.modal", () => {
+//       this.setupVideo();
+//     });
+
+//     this.modal.addEventListener("hidden.bs.modal", () => {
+//       this.cleanup();
+//     });
+
+//     // Control buttons
+//     document
+//       .getElementById("shareBtn")
+//       .addEventListener("click", () => this.shareProject());
+//     document
+//       .getElementById("fullscreenBtn")
+//       .addEventListener("click", () => this.toggleFullscreen());
+
+//     // Keyboard navigation
+//     document.addEventListener("keydown", (e) => {
+//       if (this.modal.classList.contains("show")) {
+//         switch (e.key) {
+//           case "Escape":
+//             bootstrap.Modal.getInstance(this.modal)?.hide();
+//             break;
+//           case "f":
+//           case "F":
+//             this.toggleFullscreen();
+//             break;
+//         }
+//       }
+//     });
+//   }
+
+//   openModal(galleryItem) {
+//     const videoUrl = galleryItem.dataset.projectVideo;
+//     const thumbnail = galleryItem.dataset.projectThumbnail;
+//     const title = galleryItem.dataset.projectTitle;
+//     const description = galleryItem.dataset.projectDescription;
+//     const tags = JSON.parse(galleryItem.dataset.projectTags);
+//     const links = JSON.parse(galleryItem.dataset.projectLinks || "[]");
+
+//     this.currentProject = {
+//       videoUrl,
+//       thumbnail,
+//       title,
+//       description,
+//       tags,
+//       links,
+//     };
+
+//     this.setupContent();
+
+//     // Show modal
+//     const modalInstance = new bootstrap.Modal(this.modal);
+//     modalInstance.show();
+//   }
+
+//   setupContent() {
+//     if (!this.currentProject) return;
+
+//     const { title, description, tags, links } = this.currentProject;
+
+//     // Set content
+//     document.getElementById("modalProjectTitle").textContent = title;
+//     document.getElementById("modalProjectDescription").textContent =
+//       description;
+
+//     // Update counter
+//     this.currentProjectSpan.textContent = title;
+
+//     // Set tags
+//     document.getElementById("modalProjectTags").innerHTML = tags
+//       .map((tag) => `<span class="project-tag-video">${tag}</span>`)
+//       .join("");
+
+//     // FLEXIBLE LINKS RENDERING
+//     document.getElementById("modalProjectLinks").innerHTML = links
+//       .map((link) => {
+//         const iconClass = link.icon || "ph-link";
+//         const linkType = link.type || "demo";
+
+//         return `
+//           <a href="${link.url}" 
+//              class="project-link-video ${linkType}" 
+//              target="_blank" 
+//              rel="noopener">
+//               <i class="ph-bold ${iconClass}"></i>
+//               ${link.text}
+//           </a>
+//         `;
+//       })
+//       .join("");
+//   }
+
+//   setupVideo() {
+//     if (!this.currentProject) return;
+
+//     const { videoUrl } = this.currentProject;
+
+//     // Set video source
+//     this.projectVideo.src = videoUrl;
+
+//     // Add autoplay parameter if it's a YouTube URL
+//     if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+//       const separator = videoUrl.includes("?") ? "&" : "?";
+//       this.projectVideo.src = videoUrl + separator + "autoplay=1";
+//     }
+//   }
+
+//   shareProject() {
+//     if (navigator.share && this.currentProject) {
+//       // Find the first available link for sharing
+//       const shareUrl =
+//         this.currentProject.links[0]?.url || window.location.href;
+
+//       navigator.share({
+//         title: this.currentProject.title,
+//         text: this.currentProject.description,
+//         url: shareUrl,
+//       });
+//     } else {
+//       // Fallback: copy project title and first link to clipboard
+//       const shareUrl =
+//         this.currentProject.links[0]?.url || window.location.href;
+//       const shareText = `${this.currentProject.title}: ${shareUrl}`;
+
+//       navigator.clipboard.writeText(shareText).then(() => {
+//         this.showToast("Project link copied to clipboard!");
+//       });
+//     }
+//   }
+
+//   toggleFullscreen() {
+//     if (!document.fullscreenElement) {
+//       this.modal.requestFullscreen().then(() => {
+//         this.isFullscreen = true;
+//         document.getElementById("fullscreenBtn").innerHTML =
+//           '<i class="ph-bold ph-arrows-in"></i>';
+//       });
+//     } else {
+//       document.exitFullscreen().then(() => {
+//         this.isFullscreen = false;
+//         document.getElementById("fullscreenBtn").innerHTML =
+//           '<i class="ph-bold ph-arrows-out"></i>';
+//       });
+//     }
+//   }
+
+//   showToast(message) {
+//     const toast = document.createElement("div");
+//     toast.style.cssText = `
+//       position: fixed;
+//       top: 20px;
+//       right: 20px;
+//       background: var(--accent);
+//       color: white;
+//       padding: 12px 20px;
+//       border-radius: 6px;
+//       z-index: 9999;
+//       font-size: 0.9em;
+//       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+//       animation: slideInRight 0.3s ease;
+//     `;
+//     toast.textContent = message;
+//     document.body.appendChild(toast);
+
+//     setTimeout(() => {
+//       toast.remove();
+//     }, 3000);
+//   }
+
+//   cleanup() {
+//     this.currentProject = null;
+//     this.isFullscreen = false;
+
+//     // Stop video
+//     this.projectVideo.src = "";
+
+//     // Reset UI
+//     document.getElementById("fullscreenBtn").innerHTML =
+//       '<i class="ph-bold ph-arrows-out"></i>';
+//   }
+// }
+
+// // Initialize when DOM is loaded
+// document.addEventListener("DOMContentLoaded", () => {
+//   new PortfolioVideoModal();
+// });
+
+
+// 4. REPLACE the content in animation.js with this enhanced version
+
 // FOR TEXT SWITCHING ANIMATION
 function initRotatingText() {
   const rotatingElement = document.getElementById("rotatingText");
@@ -28,37 +284,297 @@ function initRotatingText() {
   console.log("Rotating text initialized with", textItems.length, "items");
 }
 
-// Initialize when page loads
-document.addEventListener("DOMContentLoaded", initRotatingText);
-
-// Backup: Initialize if DOM already loaded
-if (document.readyState !== "loading") {
-  initRotatingText();
-}
-
-// FOR VIDEO MODAL
-class PortfolioVideoModal {
+// FOR ENHANCED PROJECT MODAL
+class EnhancedProjectModal {
   constructor() {
-    this.modal = document.getElementById("projectModal");
-    this.videoWrapper = document.getElementById("videoWrapper");
-    this.projectVideo = document.getElementById("projectVideo");
-    this.currentProjectSpan = document.getElementById("currentProject");
-    this.videoInfoPanel = document.getElementById("videoInfoPanel");
-
+    this.modal = document.getElementById('enhancedProjectModal');
     this.currentProject = null;
-    this.isFullscreen = false;
-
+    this.currentTab = 'overview';
+    this.isInitialized = false;
     this.init();
   }
 
   init() {
-    // Add click listeners to gallery items
-    document.querySelectorAll(".gallery__item").forEach((item) => {
+    if (this.isInitialized) return;
+
+    // Wait for DOM to be fully loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setupEventListeners());
+    } else {
+      this.setupEventListeners();
+    }
+    
+    this.isInitialized = true;
+  }
+
+  setupEventListeners() {
+    // Add click listeners to project items
+    document.querySelectorAll('.enhanced-project-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openModal(item);
+      });
+    });
+
+    // Tab switching
+    document.querySelectorAll('.project-tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const tabName = e.currentTarget.dataset.tab;
+        this.switchTab(tabName);
+      });
+    });
+
+    // Modal events
+    if (this.modal) {
+      this.modal.addEventListener('shown.bs.modal', () => {
+        this.setupContent();
+      });
+
+      this.modal.addEventListener('hidden.bs.modal', () => {
+        this.cleanup();
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (this.modal.classList.contains('show')) {
+          switch (e.key) {
+            case 'Escape':
+              bootstrap.Modal.getInstance(this.modal)?.hide();
+              break;
+            case 'ArrowLeft':
+              this.switchToPreviousTab();
+              break;
+            case 'ArrowRight':
+              this.switchToNextTab();
+              break;
+          }
+        }
+      });
+    }
+  }
+
+  openModal(projectItem) {
+    const title = projectItem.dataset.projectTitle;
+    const description = projectItem.dataset.projectDescription;
+    const tags = this.safeJsonParse(projectItem.dataset.projectTags, []);
+    const contributions = this.safeJsonParse(projectItem.dataset.projectContributions, []);
+    const links = this.safeJsonParse(projectItem.dataset.projectLinks, []);
+    const videoUrl = projectItem.dataset.projectVideo;
+    const gallery = this.safeJsonParse(projectItem.dataset.projectGallery, []);
+
+    this.currentProject = {
+      title,
+      description,
+      tags,
+      contributions,
+      links,
+      videoUrl,
+      gallery
+    };
+
+    // Show modal
+    if (window.bootstrap && this.modal) {
+      const modalInstance = new bootstrap.Modal(this.modal);
+      modalInstance.show();
+    }
+  }
+
+  setupContent() {
+    if (!this.currentProject) return;
+
+    const { title, description, tags, contributions, links, videoUrl, gallery } = this.currentProject;
+
+    // Set title and tags
+    this.setTextContent('modalProjectTitle', title);
+    
+    // Set tags in header
+    this.setInnerHTML('modalProjectMeta', tags
+      .map(tag => `<span class="project-tag-header">${this.escapeHtml(tag)}</span>`)
+      .join('')
+    );
+
+    // Set description
+    this.setTextContent('modalProjectDescription', description);
+
+    // Set contributions
+    this.setInnerHTML('modalProjectContributions', contributions
+      .map(contribution => `<li class="contribution-item">${this.escapeHtml(contribution)}</li>`)
+      .join('')
+    );
+
+    // Set links
+    this.setInnerHTML('modalProjectLinks', links
+      .map(link => {
+        const iconClass = link.icon || 'ph-link';
+        const linkType = link.type || 'demo';
+        return `
+          <a href="${this.escapeHtml(link.url)}" 
+             class="project-link-enhanced ${this.escapeHtml(linkType)}" 
+             target="_blank" 
+             rel="noopener">
+              <i class="ph-bold ${this.escapeHtml(iconClass)}"></i>
+              <span>${this.escapeHtml(link.text)}</span>
+          </a>
+        `;
+      })
+      .join('')
+    );
+
+    // Set gallery
+    if (gallery && gallery.length > 0) {
+      this.setInnerHTML('modalProjectGallery', gallery
+        .map(item => `
+          <div class="gallery-item-enhanced">
+            <img src="${this.escapeHtml(item.url)}" 
+                 alt="${this.escapeHtml(item.caption)}" 
+                 loading="lazy"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzMzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+PC9zdmc+'" />
+            <div class="gallery-item-overlay">
+              <div class="gallery-item-caption">${this.escapeHtml(item.caption)}</div>
+            </div>
+          </div>
+        `)
+        .join('')
+      );
+    }
+
+    // Set video
+    if (videoUrl) {
+      const autoplayUrl = videoUrl.includes('?') ? `${videoUrl}&autoplay=1` : `${videoUrl}?autoplay=1`;
+      const videoElement = document.getElementById('modalProjectVideo');
+      if (videoElement) {
+        videoElement.src = autoplayUrl;
+      }
+    }
+
+    // Reset to overview tab
+    this.switchTab('overview');
+  }
+
+  switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.project-tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    const targetBtn = document.querySelector(`[data-tab="${tabName}"]`);
+    if (targetBtn) {
+      targetBtn.classList.add('active');
+    }
+
+    // Update tab content
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.style.display = 'none';
+      pane.classList.remove('active');
+    });
+
+    const targetPane = document.getElementById(`tab-${tabName}`);
+    if (targetPane) {
+      targetPane.style.display = 'block';
+      targetPane.classList.add('active');
+    }
+
+    this.currentTab = tabName;
+
+    // Add entrance animation
+    setTimeout(() => {
+      if (targetPane) {
+        const elements = targetPane.querySelectorAll('.fade-in-up, .stagger-children > *');
+        elements.forEach((el, index) => {
+          el.style.animationDelay = `${index * 0.1}s`;
+          el.classList.add('fade-in-up');
+        });
+      }
+    }, 50);
+  }
+
+  switchToNextTab() {
+    const tabs = ['overview', 'gallery', 'video'];
+    const currentIndex = tabs.indexOf(this.currentTab);
+    const nextIndex = (currentIndex + 1) % tabs.length;
+    this.switchTab(tabs[nextIndex]);
+  }
+
+  switchToPreviousTab() {
+    const tabs = ['overview', 'gallery', 'video'];
+    const currentIndex = tabs.indexOf(this.currentTab);
+    const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    this.switchTab(tabs[prevIndex]);
+  }
+
+  cleanup() {
+    this.currentProject = null;
+    this.currentTab = 'overview';
+    
+    // Stop video
+    const videoElement = document.getElementById('modalProjectVideo');
+    if (videoElement) {
+      videoElement.src = '';
+    }
+    
+    // Clear animations
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      el.classList.remove('fade-in-up');
+      el.style.animationDelay = '';
+    });
+  }
+
+  // Utility methods
+  safeJsonParse(jsonString, defaultValue = null) {
+    try {
+      return JSON.parse(jsonString || 'null') || defaultValue;
+    } catch (e) {
+      console.warn('Failed to parse JSON:', jsonString, e);
+      return defaultValue;
+    }
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  setTextContent(elementId, text) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.textContent = text || '';
+    }
+  }
+
+  setInnerHTML(elementId, html) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.innerHTML = html || '';
+    }
+  }
+}
+
+// LEGACY VIDEO MODAL (keeping for backward compatibility)
+class PortfolioVideoModal {
+  constructor() {
+    this.modal = document.getElementById("projectModal");
+    
+    // Only initialize if the old modal exists
+    if (this.modal) {
+      this.videoWrapper = document.getElementById("videoWrapper");
+      this.projectVideo = document.getElementById("projectVideo");
+      this.currentProjectSpan = document.getElementById("currentProject");
+      this.videoInfoPanel = document.getElementById("videoInfoPanel");
+      this.currentProject = null;
+      this.isFullscreen = false;
+      this.initLegacy();
+    }
+  }
+
+  initLegacy() {
+    // Add click listeners to old gallery items
+    document.querySelectorAll(".gallery__item:not(.enhanced-project-item)").forEach((item) => {
       item.addEventListener("click", (e) => {
         if (e.target.tagName === "A") {
           e.preventDefault();
         }
-        this.openModal(item);
+        this.openLegacyModal(item);
       });
     });
 
@@ -68,16 +584,15 @@ class PortfolioVideoModal {
     });
 
     this.modal.addEventListener("hidden.bs.modal", () => {
-      this.cleanup();
+      this.cleanupLegacy();
     });
 
     // Control buttons
-    document
-      .getElementById("shareBtn")
-      .addEventListener("click", () => this.shareProject());
-    document
-      .getElementById("fullscreenBtn")
-      .addEventListener("click", () => this.toggleFullscreen());
+    const shareBtn = document.getElementById("shareBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    
+    if (shareBtn) shareBtn.addEventListener("click", () => this.shareProject());
+    if (fullscreenBtn) fullscreenBtn.addEventListener("click", () => this.toggleFullscreen());
 
     // Keyboard navigation
     document.addEventListener("keydown", (e) => {
@@ -95,7 +610,7 @@ class PortfolioVideoModal {
     });
   }
 
-  openModal(galleryItem) {
+  openLegacyModal(galleryItem) {
     const videoUrl = galleryItem.dataset.projectVideo;
     const thumbnail = galleryItem.dataset.projectThumbnail;
     const title = galleryItem.dataset.projectTitle;
@@ -112,48 +627,54 @@ class PortfolioVideoModal {
       links,
     };
 
-    this.setupContent();
+    this.setupLegacyContent();
 
     // Show modal
     const modalInstance = new bootstrap.Modal(this.modal);
     modalInstance.show();
   }
 
-  setupContent() {
+  setupLegacyContent() {
     if (!this.currentProject) return;
 
     const { title, description, tags, links } = this.currentProject;
 
-    // Set content
-    document.getElementById("modalProjectTitle").textContent = title;
-    document.getElementById("modalProjectDescription").textContent =
-      description;
+    // Set content using the legacy structure
+    if (document.getElementById("modalProjectTitle")) {
+      document.getElementById("modalProjectTitle").textContent = title;
+    }
+    if (document.getElementById("modalProjectDescription")) {
+      document.getElementById("modalProjectDescription").textContent = description;
+    }
+    if (this.currentProjectSpan) {
+      this.currentProjectSpan.textContent = title;
+    }
 
-    // Update counter
-    this.currentProjectSpan.textContent = title;
+    // Set tags (legacy)
+    if (document.getElementById("modalProjectTags")) {
+      document.getElementById("modalProjectTags").innerHTML = tags
+        .map((tag) => `<span class="project-tag-video">${tag}</span>`)
+        .join("");
+    }
 
-    // Set tags
-    document.getElementById("modalProjectTags").innerHTML = tags
-      .map((tag) => `<span class="project-tag-video">${tag}</span>`)
-      .join("");
-
-    // FLEXIBLE LINKS RENDERING
-    document.getElementById("modalProjectLinks").innerHTML = links
-      .map((link) => {
-        const iconClass = link.icon || "ph-link";
-        const linkType = link.type || "demo";
-
-        return `
-          <a href="${link.url}" 
-             class="project-link-video ${linkType}" 
-             target="_blank" 
-             rel="noopener">
-              <i class="ph-bold ${iconClass}"></i>
-              ${link.text}
-          </a>
-        `;
-      })
-      .join("");
+    // Set links (legacy)
+    if (document.getElementById("modalProjectLinks")) {
+      document.getElementById("modalProjectLinks").innerHTML = links
+        .map((link) => {
+          const iconClass = link.icon || "ph-link";
+          const linkType = link.type || "demo";
+          return `
+            <a href="${link.url}" 
+               class="project-link-video ${linkType}" 
+               target="_blank" 
+               rel="noopener">
+                <i class="ph-bold ${iconClass}"></i>
+                ${link.text}
+            </a>
+          `;
+        })
+        .join("");
+    }
   }
 
   setupVideo() {
@@ -162,32 +683,28 @@ class PortfolioVideoModal {
     const { videoUrl } = this.currentProject;
 
     // Set video source
-    this.projectVideo.src = videoUrl;
+    if (this.projectVideo) {
+      this.projectVideo.src = videoUrl;
 
-    // Add autoplay parameter if it's a YouTube URL
-    if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-      const separator = videoUrl.includes("?") ? "&" : "?";
-      this.projectVideo.src = videoUrl + separator + "autoplay=1";
+      // Add autoplay parameter if it's a YouTube URL
+      if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+        const separator = videoUrl.includes("?") ? "&" : "?";
+        this.projectVideo.src = videoUrl + separator + "autoplay=1";
+      }
     }
   }
 
   shareProject() {
     if (navigator.share && this.currentProject) {
-      // Find the first available link for sharing
-      const shareUrl =
-        this.currentProject.links[0]?.url || window.location.href;
-
+      const shareUrl = this.currentProject.links[0]?.url || window.location.href;
       navigator.share({
         title: this.currentProject.title,
         text: this.currentProject.description,
         url: shareUrl,
       });
     } else {
-      // Fallback: copy project title and first link to clipboard
-      const shareUrl =
-        this.currentProject.links[0]?.url || window.location.href;
+      const shareUrl = this.currentProject.links[0]?.url || window.location.href;
       const shareText = `${this.currentProject.title}: ${shareUrl}`;
-
       navigator.clipboard.writeText(shareText).then(() => {
         this.showToast("Project link copied to clipboard!");
       });
@@ -198,14 +715,18 @@ class PortfolioVideoModal {
     if (!document.fullscreenElement) {
       this.modal.requestFullscreen().then(() => {
         this.isFullscreen = true;
-        document.getElementById("fullscreenBtn").innerHTML =
-          '<i class="ph-bold ph-arrows-in"></i>';
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        if (fullscreenBtn) {
+          fullscreenBtn.innerHTML = '<i class="ph-bold ph-arrows-in"></i>';
+        }
       });
     } else {
       document.exitFullscreen().then(() => {
         this.isFullscreen = false;
-        document.getElementById("fullscreenBtn").innerHTML =
-          '<i class="ph-bold ph-arrows-out"></i>';
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        if (fullscreenBtn) {
+          fullscreenBtn.innerHTML = '<i class="ph-bold ph-arrows-out"></i>';
+        }
       });
     }
   }
@@ -233,20 +754,47 @@ class PortfolioVideoModal {
     }, 3000);
   }
 
-  cleanup() {
+  cleanupLegacy() {
     this.currentProject = null;
     this.isFullscreen = false;
 
     // Stop video
-    this.projectVideo.src = "";
+    if (this.projectVideo) {
+      this.projectVideo.src = "";
+    }
 
     // Reset UI
-    document.getElementById("fullscreenBtn").innerHTML =
-      '<i class="ph-bold ph-arrows-out"></i>';
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    if (fullscreenBtn) {
+      fullscreenBtn.innerHTML = '<i class="ph-bold ph-arrows-out"></i>';
+    }
   }
 }
 
-// Initialize when DOM is loaded
+// Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize rotating text
+  initRotatingText();
+  
+  // Initialize enhanced project modal
+  new EnhancedProjectModal();
+  
+  // Initialize legacy video modal for backward compatibility
   new PortfolioVideoModal();
+});
+
+// Backup: Initialize if DOM already loaded
+if (document.readyState !== "loading") {
+  initRotatingText();
+  new EnhancedProjectModal();
+  new PortfolioVideoModal();
+}
+
+// Add entrance animations to gallery items
+window.addEventListener('load', () => {
+  const galleryItems = document.querySelectorAll('.gallery__item');
+  galleryItems.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.2}s`;
+    item.classList.add('fade-in-up');
+  });
 });
